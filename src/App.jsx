@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Routes, Route, Link, Navigate, useParams, useMatch, useNavigate } from 'react-router-dom'
-import {useField} from "./hooks/index"
+import {useField, useReset} from "./hooks/index"
 
 
 
@@ -47,7 +47,8 @@ const Footer = () => (
 const CreateNew = (props) => {
   const content = useField()
   const author =useField()
-  const info = useField() 
+  const info = useField()
+  const reset = useReset(content,author,info)
 
 
   const handleSubmit = (e) => {
@@ -62,6 +63,7 @@ const CreateNew = (props) => {
     
   }
   const navigate = useNavigate()
+  
 
   return (
     <div>
@@ -80,6 +82,7 @@ const CreateNew = (props) => {
           <input {...info} />
         </div>
         <button>create</button>
+        <button {...reset} >reset</button>
       </form>
     </div>
   )
